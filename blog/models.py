@@ -12,4 +12,5 @@ class Post(models.Model):
 
 
     def get_absolute_url(self):
+        print('REDIRECT')
         return reverse('post_detail', kwargs={"pk": self.pk}) #
