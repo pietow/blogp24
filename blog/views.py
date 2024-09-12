@@ -44,6 +44,8 @@ class ThemeView(View):
             request.session['theme'] = 'dark'
         else:
             request.session['theme'] = 'light'
+        print(request.session.get('theme'))
+        print(request.session['theme'])
         return redirect(request.META.get('HTTP_REFERER'))
         
         
