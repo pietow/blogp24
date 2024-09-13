@@ -3,6 +3,7 @@ from .models import Post
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.shortcuts import redirect
+from .forms import PostForm
 
 class BlogListView(ListView):
     model = Post
@@ -24,7 +25,14 @@ class BlogDetailView(DetailView):
 class BlogCreateView(CreateView):
     model = Post
     template_name = "post_new.html"
-    fields = ["title", "author", "body"]
+    #fields = ["title", "author", "body"]
+    form_class = PostForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
 
 
 class BlogUpdateView(UpdateView):
